@@ -1,0 +1,149 @@
+
+        *{
+            margin: 0;
+            padding: 0;
+            
+        }
+        body{
+            background: #2b005e;
+            
+        }
+        .divbg{
+            background: url(https://i.pinimg.com/564x/97/15/b4/9715b4c4facbba4436f05f97d0788fe5.jpg) no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 100%;
+            width:100%;
+        }
+        
+        .centered{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            text-align: center;
+        }
+        .split{
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            padding top: 20px;
+        }
+        .left{
+            text-align: left;
+
+        }
+
+        .right{
+            right: 0;
+            position: relative;
+            text-align: right;
+            color: aliceblue;
+        }
+
+        .inputfields{
+            border: 2px solid rgb(60,60,60); border-radius: 15px 3px;
+            background: lightblue;
+            padding: 5px;
+            margin-bottom: 15px;
+            text-align: left;
+            color: dimgray;
+            margin 20px;
+            border-style: solid;
+            width: 230px;
+            text-indent: 10px;
+        }
+        h1{
+            font-family: 'Carter One', cursive;
+            color: #4CC9F0;
+            text-shadow: 2px 2px 0px #F72585;
+        }
+        .greenbutton{
+            color: white;
+            height: 38px; width: 50px;
+            border: none; border-radius: 15px;
+            background: orangered;
+        }
+        .montalt{
+            font-family: 'Montserrat Alternates', sans-serif;
+            color: dimgray;
+        }
+        .maindisplay{
+            height: 80%;
+            width: 80%;
+            border: none; border-radius: 20px;
+            box-shadow: 0px 0px 20px black;    
+        }
+        .navbar{
+            height: 50px;
+            width: 100%;
+            background-color: black;
+            position: absolute;
+            color: white;
+            size: 29px;
+            margin-bottom: 40px;
+            z-index: 9999;
+        }
+        table{
+            margin-right: 30px;
+        }
+        tr{
+            float: right;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        td{
+            padding-bottom: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-left: 15px;
+            
+        }
+        td:hover{
+            color: lightblue;
+            font-weight: 700;
+            border-bottom: 2px solid purple;
+            cursor: pointer;
+        }
+        #logo{
+                background: url(https://global-uploads.webflow.com/5e3228ed49887d6904a307ff/5e82e9d527811b5789b7c152_Logo_of_Family_Feud.png);
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;
+                height: 180px;
+                width: 350px;
+                background-position: center;
+            }
+        .col-4{
+            border-left: 2px dashed white; height: 400px;
+            position: relative;
+            padding: 40px;
+            text-align-last: left;
+            margin-top: 90px;
+            overflow-y: scroll;
+        }
+        .fields{
+            margin-top: 50px;
+        }
+        .col-8{
+            padding: 40px;
+            margin-top: 90px
+        }
+        .groupleft{
+            
+        }
+        .groupright{
+            
+        }
+        .groupleft:hover{
+            
+        }
+        .groupright:hover{
+            
+        }
+        
+    </style>
