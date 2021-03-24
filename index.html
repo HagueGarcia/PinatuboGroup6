@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+      <title>Family Feud</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+      <script src="game.js"></script>
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+      <script src="name.js"></script>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            
+        }
+        body{
+            background: #2b005e;
+            
+        }
+        .divbg{
+            background: url(media/loopvbg.mp4) no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 100%;
+            width:100%;
+        }
+        
+
+        .inputfields{
+            border: 2px solid rgb(60,60,60); border-radius: 15px 3px;
+            background: lightblue;
+            padding: 5px;
+            margin-bottom: 15px;
+            text-align: left;
+            color: darkslateblue;
+     
+            border-style: solid;
+            width: 230px;
+            text-indent: 10px;
+            font-size: 26px;
+            height: 40px;
+            font-family: 'Montserrat Alternates', sans-serif;
+            font-weight: 600;
+        }
+        h1{
+            font-family: 'Dela Gothic One', cursive;
+            color: white;
+            text-shadow: 2px 2px 0px #F72585;
+        }
+        .greenbutton{
+            color: white;
+            height: 38px; width: 90px;
+            border: none; border-radius: 19px;
+            background: rgb(135,3,147);
+            background: linear-gradient(54deg, rgba(135,3,147,1) 16%, rgba(242,6,119,1) 100%);
+            padding: 8px;
+            margin-top: 30px;
+        }
+        .montalt{
+            font-family: 'Montserrat Alternates', sans-serif;
+            color: white;
+        }
+        .maindisplay{
+            height: 80%;
+            width: 80%;
+            border: none; border-radius: 20px;
+            box-shadow: 0px 0px 20px black;    
+        }
+        .navbar{
+            height: 50px;
+            width: 100%;
+            position: relative;
+            color: white;
+            margin-bottom: 0px;
+            z-index: 9999;
+        }
+        table{
+            border-collapse: separate;
+            border-spacing: 10px;
+            text-transform: uppercase;
+        }
+        tr{
+            float: left;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        td{
+            margin-left: 15px;
+            border-spacing: 40px;
+            transition: 0.6s ease-in-out ;
+            border: none; border-radius: 19px;
+            padding: 5px 15px;
+            
+        }
+        .navbar a:hover{
+                color: black;
+                font-weight: 700;
+                background-color: white;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            a{
+                text-decoration: none;
+                margin-left: 15px;
+                border-spacing: 40px;
+                transition: 0.6s ease-in-out ;
+                border: none; border-radius: 19px;
+                padding: 5px 15px;
+                color: white;
+                font-family:  'Montserrat Alternates', sans-serif;
+
+            }
+        #logo{
+                background: url(https://global-uploads.webflow.com/5e3228ed49887d6904a307ff/5e82e9d527811b5789b7c152_Logo_of_Family_Feud.png);
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;
+                height: 180px;
+                width: 350px;
+                background-position: center;
+            }
+        .col-4{
+            
+            position: absolute; top: 0; right: 0;
+            padding: 40px;
+            text-align-last: center;
+
+        }
+        .fields{
+            margin-top: 20px;
+        }
+        .col-8{
+            padding: 60px;
+            padding-left: 100px;
+            
+        }
+        #myVideo {
+          position: fixed;
+          right: 0;
+          bottom: 0;
+          min-width: 100%;
+          min-height: 100%;
+          z-index: -9999;
+        }
+        #overlay1{
+            position: absolute;
+            left: 0; top: 0;
+            height: 100%;
+            width: 100%;
+            background: rgb(78,15,158);
+            background: linear-gradient(332deg, rgba(78,15,158,0) 16%, rgba(45,1,50,1) 100%);
+            z-index: 0;
+        }
+        .tier2{
+            height: 100%;
+            width: 100%;
+            background-color: white;
+            color: #F72585;
+            position: relative;
+            margin: 0;
+        }
+        .gmt{
+            margin-bottom: 30px;
+            
+        }
+        .decide{
+            margin-top: 300px;
+            background: rgb(255,195,0);
+            background: linear-gradient(54deg, rgba(255,195,0,1) 16%, rgba(242,6,6,1) 70%);
+            height: auto; width: auto;
+            padding: 10px;
+            border-radius: 19px;
+        }
+        #teampic{
+            background: white url(media/team.jpg) no-repeat;
+            background-size: cover;
+            height: 650px;
+            
+        }
+        ol{
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="overlay1"></div>
+ <video autoplay muted loop id="myVideo">
+  <source src="media/loopvbg.mp4" type="video/mp4">
+</video>
+    <div class= "container-fluid divbg ">
+
+    <div class="row">
+            <div class="col-8">
+            <div class="row">
+            <div class="col" style= "padding: 40px 0px">
+                <div class="navbar montalt">
+                    <table>
+                        <tr>
+                            <td class="montalt" style= "margin: 0; text-indent: 5px;"><a href="developers.html">About the developers</a></td>
+                            <td class="montalt" ><a href="gametips.html">Tips</a></td>
+                            
+                            <td class="montalt"><a href="index.html">Home</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            </div>
+                <h1 style="font-size:  100px; text-transform: uppercase; line-height: 1">Family  Feud</h1>
+                <div class="fields">
+                <input type="text"  class="inputfields" id="mpinput1" >
+                <br>
+                <input type="text"  class="inputfields" id="mpinput2">
+                <br>
+                <button class="greenbutton montalt" style="color:white" onclick="getNames()">PLAY</button>
+                </div>
+            </div>
+        <div class="col" style="padding: 0;">
+        </div>
+
+        
+    <div class="row tier2" style="background-color: white">
+        <div class="col-4" id="teampic" style= "background-color: white; padding:0;">
+        
+        </div>
+        <div class="col-8" style="background-color: white; float: right; position: absolute; right: 0; height: 650px; text-align: left">
+                <div class="row gmt"><h1 class="greenbutton" style="z-index: 999; color: rgb(30,30,30); text-align: right;float: right">Game Mechanics</h1></div>
+                <div class="montalt right" style="color:black; text-align: right; ">
+                    <br><br>
+                    <ol>
+                        
+                        <li>Divide into two teams.</li>
+                        <li>One member of each team faces&nbsp;the other&nbsp;in a face-off through a game of rock, paper, and scissors.</li>
+                        <li>The team that gets the point receives control of the board and has the option of playing or passing control to the other team.</li>
+                        <li>The team that has the control tries to reveal all of the correct answers to the question before receiving&nbsp;three strikes. (If the answer is not on the board, you can try again)</li>
+                        <li>If the team receives&nbsp;three strikes without clearing the board, control is passed to the other team.</li>
+                        <li>The team that now has the control is able to give one answer in the hopes that&nbsp;it is&nbsp;found on the board. 
+                        <ul>
+                        <li>If it is, points are added to the team’s score.&nbsp;</li>
+                        <li>If not, the other team gets the points.</li>
+                        </ul>
+                        </li>
+                        <li>Points are collected as each team finds&nbsp;its answers to the question on the board.&nbsp;(Click the&nbsp;<strong>Score</strong> button to add points to the appropriate team’s score.)</li>
+                        <li>Continue the game repeating steps&nbsp;two through seven.</li>
+                        <li>Each team tries to collect the most points. The team with the most points wins the game!</li>
+                    </ol>
+
+                </div>
+            </div>
+
+        
+        </div>
+            
+ 
+    
+    </div>
+    </div>
+
+
+</body>
+</html>

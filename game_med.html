@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>Round 2</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+        <script src="name.js"></script>
+        <script>
+        
+        var i = 0;
+        var errorCount1, errorCount2;
+        var Score1 = 0; var Score2 = 0;
+        let list_easy = ["ELEPHANT", "RABBIT", "DOG", "DONKEY", "FOX", "MOUSE"];
+        let list_easy_keywords = ["ELEPHANTS", "BUNNY", "DACHSUND", "MULE", "FOX", "RAT"];
+        let listPoints = [ 46,34,9,4,2,2 ];
+        //first player is player 1//
+        var y = 1;
+        var notAgain = new Array;
+        var currentPlayer;
+        var gamePoints1 = 0;
+        var gamePoints2 = 0;
+        var inArray = "";
+        var equivPoints = "input first";
+        var sec1, sec2;
+        console.log(namePlayer1);
+            
+        if (Score1 == 97 || Score2 == 97 || Score1+Score2 == 97){
+                            forceEnd1()
+                            document.getElementById("time1").style.display = "none";
+                            document.getElementById("time2").style.display = "none";
+                            callgame();
+                            
+                            }
+        function closePopUp(){
+
+          document.getElementById('popUp').style.display = "none";
+          document.getElementById('popUpOverlay').style.display = "none";
+          console.log('instructions closed');
+          document.getElementById("turn").innerHTML = namePlayer1 + "\'s turn" ;
+          document.getElementById("id1").innerHTML = namePlayer1 ;
+          document.getElementById("id2").innerHTML = namePlayer2 ;
+          console.log(namePlayer1 + "\'s turn");
+          startTimer()
+        };
+
+        function startTimer() {
+
+          var sec1 = 60;
+          setInterval(function() {
+            document.getElementById("time").innerHTML = "00" + " : " + sec1;
+            sec1--;
+            if (sec1 == 00) {
+                document.getElementById('time').innerHTML = "Time's Up!";
+                document.querySelector('#time').style.display = "none";
+                document.getElementById('time2').style.display = "block";
+                preTimer2()
+                switchChar2()
+              }
+            }, 1000);
+
+          }
+          function switchChar2(){
+            y = 2;
+          }
+          function preTimer2(){
+            console.log(namePlayer2 + "\'s turn");
+
+            startTimer2();
+          }
+          function forceEnd1(){
+            sec = 00;
+            document.querySelector('#time').style.display = "none";
+            document.getElementById('time2').style.display = "block";
+          }
+
+          function startTimer2() {
+            document.getElementById("turn").innerHTML = namePlayer2 + "\'s turn";
+            sec2 = 60;
+            setInterval(function() {
+              document.getElementById("time2").innerHTML = "00" + " : " + sec2;
+              sec2--;
+              if (sec2 == 00) {
+                document.getElementById('time2').innerHTML = "Time's Up!";
+                document.querySelector('#time2').style.display = "none";
+                document.getElementById("field").style.display = "none";
+                  
+
+                console.log(Score1);
+                console.log(Score2);
+                }
+              }, 1000);
+            }
+
+        function submitButton(){
+          var answer;
+
+
+          answer = document.getElementById('input').value;
+          answer = String(answer);
+          answer = answer.toUpperCase();
+          console.log(answer);
+
+          document.getElementById("input").value = null;
+          
+            if (y == 1){
+            var correct1Total=0;
+              
+                    for (var j=0 ; j<8 ; j++){
+                       
+                        if( list_easy[j] == answer){
+                        inArray = parseInt(j + 1);
+                        notAgain.push(j);
+                        console.log("top " + inArray + " in the survey");
+                        
+                        var reveal = 'answer' + String(j+1);
+                        document.getElementById(reveal).innerHTML = list_easy[j] + " "+ "<span id=\"ap\">" + listPoints[j] + "</span>";
+                        Score1 = Score1 + listPoints[j];
+                        console.log("+ " + listPoints[j] + " points");
+                        document.getElementById('Score1').innerHTML = Score1;
+                        correct1Total++;
+                        
+                      }
+                        else if (list_easy_keywords[j] == answer) {
+                        notAgain.push(j);
+                        inArray = j + 1;
+                        console.log(inArray);
+                        var x = inArray;
+                        console.log("top " + inArray + " in the survey");
+                        
+                        var reveal = 'answer' + String(inArray);
+                        document.getElementById(reveal).innerHTML = list_easy[j] + " "+ "<span id=\"ap\">" + listPoints[j] + "</span>";
+                        Score1 = parseInt(Score1 + listPoints[j]);
+                        console.log("+ " + listPoints[j] + " points");
+                        document.getElementById('Score1').innerHTML = Score1;
+                        correct1Total++;
+                            
+                      }
+                    }
+                        if (correct1Total == 0){
+                        console.log("incorrect");
+                        answer = null;
+                        var wrongAnswer = "errors" + String(y);
+                        var board = document.getElementById(wrongAnswer).textContent;
+                        board = document.getElementById(wrongAnswer).innerHTML =  board + "X";
+
+                      }
+                        
+                        console.log(board);
+                            if (board == "XXX"){
+
+
+                              console.log(namePlayer1 + " error limit reached")
+                              document.getElementById("turn").innerHTML = namePlayer2 + "\'s turn" ;
+
+                              if (y != 2){
+                                  forceEnd1();
+                                  switchChar2();
+                                  preTimer2()
+                                 }
+                            };
+
+
+          }else if (y == 2){
+            document.getElementById("time").style.display = "none"
+            var correct2Total = 0;
+              for (var j=0 ; j<8 ; j++){
+
+                if( list_easy[j] == answer ){
+                        inArray = parseInt(j + 1);
+                        console.log("top " + inArray + " in the survey");
+                        notAgain.push(j);
+
+                        var reveal = 'answer' + String(j+1);
+                        document.getElementById(reveal).innerHTML = list_easy[j] + " "+ "<span id=\"ap\">" + listPoints[j] + "</span>";
+                        Score2 = Score2 + listPoints[j];
+                        console.log("+ " + listPoints[j] + " points");
+                        document.getElementById('Score1').innerHTML = Score2;
+                        correct2Total++;
+                        
+                }
+                else if (list_easy_keywords[j] == answer) {
+
+                inArray = j + 1;
+                notAgain.push(j);
+
+                console.log(inArray);
+                var x = inArray;
+                console.log(typeof(inArray));
+                var reveal = 'answer' + String(inArray);
+                console.log(typeof(reveal));
+                document.getElementById(reveal).innerHTML = list_easy[j] + " "+ "<span id=\"ap\">" + listPoints[j] + "</span>";
+
+                Score2 = parseInt(Score2 + listPoints[j]);
+                console.log("+ " + listPoints[j] + " points");
+                document.getElementById('Score2').innerHTML = Score2;
+
+                correct2Total++;
+
+                equivPoints= "ansPoint" + x;
+                var b = String(equivPoints);
+                document.getElementById(b).style.display = "block";
+                }
+              }
+              if (correct2Total == 0){
+              console.log("incorrect");
+              answer = null;
+              var wrongAnswer = "errors" + String(y);
+              var board = document.getElementById(wrongAnswer).textContent;
+              board = document.getElementById(wrongAnswer).innerHTML =  board + "X";
+              }
+                  console.log(board);
+                  
+                      if (board == "XXX"){
+
+                    console.log("Player" + y + " error limit reached");
+                    document.getElementById("input").style.display = "none";
+                    document.getElementById("submitButton").style.display = "none";
+                    document.getElementById("time2").style.display = "none";
+                      
+                    if (Score1 > Score2){
+                    document.getElementById("turn").innerHTML = namePlayer1 + " won this round! Proceed to Round 2.";
+                    gamePoints1++;
+                    } else if(Score2>Score1){
+                    document.getElementById("turn").innerHTML = namePlayer2 + " won this round! Proceed to Round 2.";
+                    gamePoints2++;
+
+                    } else if(Score2=Score1){
+                    document.getElementById("turn").innerHTML = "Tie game! Proceed to Round 2";
+                    }
+                      
+                  
+                  
+
+                    
+                        for (var q=0 ; q<6 ; q++){
+                       
+                        var final = 'answer' + String(q+1);
+                        document.getElementById(final).innerHTML = list_easy[q] + " "+ "<span id=\"ap\">" + listPoints[q] + "</span>";
+                            }
+                    }  
+                }
+                  //close if
+                }//close player2
+            
+            //close submitButton
+            
+            
+        </script>
+        <style>
+            
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            body{
+              background-color: #0d0d0d ;
+              
+            }
+            /* ------------------------boot col and class styles--------------------------- */
+            .col-3{
+               
+                
+                height: 200px;
+            }
+            .col-6{
+                
+                background-repeat: no-repeat;
+                
+                height: 500px;
+                
+            }
+            .errors{
+                background: rgb(226,8,8);
+                background: linear-gradient(31deg, rgba(226,8,8,1) 27%, rgba(252,121,0,1) 100%);
+                height: 65px;
+                width: 140px;
+                color: yellow;
+                font-size: 40px;
+                border-radius: 19px;
+                font-family:  'Dela Gothic One', cursive;
+                text-decoration: none;
+                text-shadow: 1px 1px 0px orangered;
+                text-align: center;
+                margin-right: auto;
+                margin-left: auto;
+            }
+            #field{
+                margin-right: auto; margin-left: auto;
+                text-align: center;
+                height: 200px; width: 100%;
+                margin-top: 10%;
+            }
+            #board{
+                text-align: center;
+            }
+            .main{
+                margin-top: 0px;
+            }
+            #logo{
+                background: url(https://global-uploads.webflow.com/5e3228ed49887d6904a307ff/5e82e9d527811b5789b7c152_Logo_of_Family_Feud.png);
+                background-repeat: no-repeat;
+                background-size: contain;   
+                height: 180px;
+                width: 350px;
+                background-position: center;
+                background-blend-mode: multiply;
+                padding: 30px;
+                
+                border-radius: 25px;
+                margin-left: auto;
+                margin-right: auto;
+
+            }
+            /* ------------------------table styles--------------------------- */
+            #t2 table{
+                background: black;
+                margin-right: auto;
+                margin-left: auto;
+                padding: 8px;
+                border-collapse: separate;
+                border-spacing: 8px;
+                border: 3px solid orange;
+            }
+            #t2 tr{
+              border: 2px solid black;
+            }
+            #t2 td{
+              border: 3px solid grey; border-radius: 10px;
+              padding: 8px;
+              height: 60px;
+              width: 280px;
+              background: rgb(21,20,88);
+              background: radial-gradient(circle, rgba(21,20,88,1) 24%, rgba(150,9,148,1) 100%);
+              font-family:  'Dela Gothic One', cursive;
+              color: orange;
+                font-size: 18px;
+                display: table-cell;
+                vertical-align: middle;
+            }
+            #ap{
+              float: right;
+              font-size: 20px;
+              background-color: black;
+              height:auto;
+              width: auto;
+                padding: 8px 10px;
+              display: block;
+                float: right;
+                color: white !important;       
+                font-family: 'Montserrat Alternates', sans-serif;
+                
+            }
+
+            /* ------------------------headings styles--------------------------- */
+            h1{
+              font-family: 'Carter One', cursive;
+              color: navy;
+
+            }
+            h2{
+              color: white;
+              margin-top: 10px;
+              font-family: 'Montserrat Alternates', sans-serif;
+
+            }
+            /* ------------------------id styles--------------------------- */
+                  /* -------popUp styles------------- */
+            #closePopUpButton{
+            color: white;
+            height: 45px; width: 100px;
+            border: none; border-radius: 19px;
+            background: rgb(135,3,147);
+            background: linear-gradient(54deg, rgba(135,3,147,1) 16%, rgba(242,6,119,1) 100%);
+            
+            }
+            #popUp{
+                  position: absolute;
+                  left: 33%;
+                  top: 20%;
+                  margin: auto;
+                  z-index: 99999999;
+                  display: block;
+                  text-align: center;
+                  margin-left: auto;
+                  margin-right: auto;
+                  border-radius: 15px;
+                  background: rgb(226,8,171);
+                  background: linear-gradient(153deg, rgba(226,8,171,1) 0%, rgba(24,1,59,1) 60%);
+                  box-shadow: 0px 0px 30px black;
+                  padding: 50px;
+            }
+            #popUp p, h3 {
+                padding: 10px;
+                color: white;
+                font-family: 'Montserrat Alternates', sans-serif;
+
+            }
+            #popUpOverlay{
+                  display: block;
+                  height: 100%;
+                  width: 100%;
+                  background-color: rgba(0,0,0,0.6);
+                  z-index: 99;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-size:cover;
+                  filter: blur(10px);
+
+            }
+            .greenbutton{
+            color: white;
+            height: 38px; width: 90px;
+            border: none; border-radius: 19px;
+            background: rgb(192,0,144);
+            background: linear-gradient(259deg, rgba(192,0,144,1) 0%, rgba(255,156,0,1) 100%);
+            padding: 8px;
+            margin-top: 30px;
+            }
+            #easyQ{
+                  font-family: 'Montserrat Alternates', sans-serif;
+                  text-align: center;
+                  text-shadow: none;
+                  color: black;
+                  background-color: lightblue;
+                  border: 2px solid gray; border-radius: 10px;
+                  z-index: 999999;
+                  font-size: 24px;
+                  padding: 20px;
+
+            }
+            #time, #time2{
+                color: white;
+                font-size: 40px;
+                background: rgb(20, 10, 200);
+                border-radius: 10px; border: 3px solid white;
+                padding: 7px;
+                width: 180px;
+                margin-right: auto;
+                margin-left: auto;
+                font-family: 'Montserrat Alternates', sans-serif;
+            }
+            #time2{
+                display: none;
+                color: yellow;
+                background: magenta;
+            }
+            #field{
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 30px
+            }
+            .inputfields{
+            border: 2px solid rgb(60,60,60); border-radius: 15px 3px;
+            background: lightblue;
+            padding: 5px;
+            margin-bottom: 15px;
+            text-align: left;
+            color: dimgray;
+            margin: 20px;
+            border-style: solid;
+            width: 230px;
+            text-indent: 10px;
+            color: darkslateblue;
+            font-size: 26px;
+            height: 40px;
+            font-family: 'Montserrat Alternates', sans-serif;
+            font-weight: 600;
+            }
+            #ansPoint1, #ansPoint2, #ansPoint3, #ansPoint4, #ansPoint5, #ansPoint6, #ansPoint7, #ansPoint8{
+              display: none;
+            }
+            #t2 td p{
+                font-family: 'Dela Gothic One', cursive;
+                color: white;
+                font-size: 18px;
+                height: auto;
+                width: auto;
+            }
+            .maindisplay{
+            height: 800px;
+            width: 70%;
+            border: none; border-radius: 80px;
+            box-shadow: 0px 0px 20px black;    
+            margin-top: 20px;
+            
+            }
+            #myVideo {
+              position: fixed;
+              right: 0;
+              bottom: 0;
+              min-width: 100%;
+              min-height: 100%;
+              z-index: -9999;
+            }
+            h1{
+            font-family: 'Dela Gothic One', cursive;
+            color: white;
+            text-shadow: 2px 2px 0px #F72585;
+            }
+            h3{
+                text-align: center;
+                font-size: 100px;
+            }
+            .maindisplay h3{
+            
+                font-size: 180px;
+            }
+            .navbar{
+            height: 50px;
+            width: 100%;
+            position: absolute;
+            top: 20px;
+            color: white;
+            
+            margin-bottom: 0px;
+            z-index: 9999;
+            }
+            .navbar table{
+                border-collapse: separate;
+                border-spacing: 10px;
+                text-transform: uppercase;
+            }
+            .navbar tr{
+                float: left;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            .navbar a:hover{
+                color: black;
+                font-weight: 700;
+                background-color: white;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            a{
+                text-decoration: none;
+                margin-left: 15px;
+                border-spacing: 40px;
+                transition: 0.6s ease-in-out ;
+                border: none; border-radius: 19px;
+                padding: 5px 15px;
+                color: white;
+                font-family:  'Montserrat Alternates', sans-serif;
+
+            }
+            #overlay1{
+            position: absolute;
+            left: 0; top: 0;
+            height: 100%;
+            width: 100%;
+            background: rgb(78,15,158);
+            background: linear-gradient(332deg, rgba(78,15,158,0) 16%, rgba(45,1,50,1) 100%);
+            z-index: -9;
+            }
+            .maindisplay h3, .errors{
+                transform: translateY(140px);
+            }
+        </style>
+    </head>
+<body>
+    <div id="overlay1"></div>
+     <video autoplay muted loop id="myVideo">
+  <source src="media/loopvbg.mp4" type="video/mp4">
+</video>
+  <div id="popUpOverlay" class="row" ></div>
+    <div class="col-4" id="popUp">
+
+      <h1>Welcome to family feud</h1>
+      <h3>Round 2</h3>
+      <p>for better experience, turn on full screen mode.</p>
+      <br>
+
+      <button id="closePopUpButton" onclick="closePopUp()" style="font-size: 20px; transform: scale(1.3); text-transform: uppercase"> Start </button>
+
+    </div>
+            <div class="row">
+            <div class="col" style= "padding: 40px">
+                <div class="navbar montalt">
+                    <table>
+                        <tr>
+                            <td class="montalt" style= " text-indent: 5px;"><a href="developers.html">About the developers</a></td>
+                            <td class="montalt"><a href="gametips.html">Tips</a></td>
+                            
+                            <td class="montalt"><a href="index.html">Home</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            </div>
+
+          <div class="container-fluid maindisplay">
+                
+            <!-- eto yung mga scoreboard, errors, answerboard -->
+            
+          <div class="row main">
+
+
+          <div id="oneboard" class="col-3">
+            
+
+          <h3 id="Score1">0</h3>
+          <div id="errors1" class="errors"></div>
+              <h2 id="id1"></h2>
+
+          </div>
+
+          <div class="col-6">
+              <div id="question">
+                <h1 id="easyQ" class="montalt">Name an amimal that, if it could talk, would say "I'm all ears"</h1>
+              </div>
+          <div id="board">
+              <div class="montalt" id="time">01:00</div>
+              <div class="montalt" id="time2">01:00</div>
+              <div id="logo">
+
+              </div>
+          <table id="t2">
+
+              <tr>
+                  <td id="answer1"><p class="ansRank1">1</p></td>
+                  <td id="answer5"><p class="ansRank5">5</p></td>
+              </tr>
+              <tr>
+                  <td id="answer2"><p class="ansRank2">2</p></td>
+                  <td id="answer6"><p class="ansRank6">6</p></td>
+              </tr>
+              <tr>
+                  <td id="answer3"><p class="ansRank3">3</p></td>
+                  <td id="answer7"><p class="ansRank7"></p></td>
+              </tr>
+              <tr>
+                  <td id="answer4"><p class="ansRank4">4</p></td>
+                  <td id="answer8"><p class="ansRank8"></p></td>
+              </tr>
+
+
+              </table>
+
+              <h2 id="turn">&nbsp</h2>
+          </div>
+          </div>
+
+
+          <div id="twoboard" class="col-3">
+            
+          <h3 id="Score2">0</h3>
+          <div id="errors2" class="errors"></div>
+            <h2 id="id2"></h2>
+
+          </div>
+
+          </div>
+              </div>
+
+
+
+    <div class="row" id="field">
+        <div>
+    <input type="text" id="input" class="inputfields">
+            <button class="greenbutton" id="submitButton" onclick="submitButton()">Submit</button>
+
+
+            </div>
+        
+    </div>
+
+<div style="position: fixed; bottom:15px; right: 15px;">
+            <a class="greenbutton" href="game_hard.html">ROUND 3</a>
+        </div>
+
+
+</body>
+</html>
